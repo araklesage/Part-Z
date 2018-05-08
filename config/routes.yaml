@@ -1,3 +1,28 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+ # config/routes.yaml
+
+# the "app_lucky_number" route name is not important yet
+app_lucky_number:
+    path: /lucky/number/{max}
+    controller: App\Controller\LuckyController::number
+
+blog_list:
+    path:     /blog/{page}
+    controller: App\Controller\BlogController::list
+    defaults:
+        page: 1
+    requirements:
+        page: '\d+'
+
+article_show:
+  path:     /articles/{_locale}/{year}/{slug}.{_format}
+  controller: App\Controller\ArticleController::show
+  defaults:
+      _format: html
+  requirements:
+      _locale:  en|fr
+      _format:  html|rss
+      year:     \d+
+
+Pz_Homepage:
+    path:     /
+    controller: App\Controller\CoreController::index
